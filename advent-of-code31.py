@@ -3,8 +3,7 @@ def validate_sub_matrix(matrix: list[list[str]], i: int, j: int) -> bool:
     str1 = matrix[i][j] + matrix[i + 1][j + 1] + matrix[i + 2][j + 2]
     str2 = matrix[i + 2][j] + matrix[i + 1][j + 1] + matrix[i][j + 2]
 
-    if (str1 == 'MAS' or str1 == 'SAM') and (str2 == 'MAS' or str2 == 'SAM'):
-        return True
+    return (str1 == 'MAS' or str1 == 'SAM') and (str2 == 'MAS' or str2 == 'SAM')
 
 def get_x_mas_count(matrix: list[list[str]]) -> int:
 

@@ -37,7 +37,7 @@ def check_if_sorted(l: list[int], sign: int) -> bool:
 
 def main():
     stable_count = 0
-    with open("test-11.txt") as file_in:
+    with open("test.txt") as file_in:
         for line in file_in:
             split_l = line.split()
             l = [int(i) for i in split_l]

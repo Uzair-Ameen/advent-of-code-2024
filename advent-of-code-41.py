@@ -1,5 +1,7 @@
 from functools import cmp_to_key
 
+#There's literally nop need to convert the inputs to integers. I just did it because I wanted to
+
 def is_update_valid(update: list[int], order_map: dict[int, list[int]]) -> bool:
     for i in range(len(update) - 1):
         for j in range(i + 1, len(update)):

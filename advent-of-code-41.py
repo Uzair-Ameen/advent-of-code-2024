@@ -2,13 +2,6 @@ from functools import cmp_to_key
 
 #There's literally nop need to convert the inputs to integers. I just did it because I wanted to
 
-def is_update_valid(update: list[int], order_map: dict[int, list[int]]) -> bool:
-    for i in range(len(update) - 1):
-        for j in range(i + 1, len(update)):
-            if order_map.get(update[i]) is not None and update[j] in order_map.get(update[i]):
-                return False
-    return True
-
 def main():
     order_map = {}
 
@@ -39,9 +32,9 @@ def main():
 
         for update in updates:
             pages = [int(x) for x in update.split(',')]
+            valid_update = sorted(pages, key=cmp_to_key(get_first))
 
-            if not is_update_valid(pages, order_map):
-                valid_update = sorted(pages, key=cmp_to_key(get_first))
+            if valid_update != pages:
                 invalid_updates.append(valid_update)
 
         count = 0

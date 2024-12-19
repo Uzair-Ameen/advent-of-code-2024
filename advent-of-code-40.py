@@ -1,17 +1,16 @@
-
-
-def is_update_valid(update, order_map):
-    for i in range(len(update) - 1):
-        for j in range(i + 1, len(update)):
-            if order_map.get(update[i]) is not None and update[j] in order_map.get(update[i]):
-                return False
-    return True
-
+from functools import cmp_to_key
 
 def main():
-    with open("day5.txt", 'r') as f:
-        order_map = {}
+    order_map = {}
 
+    def get_first(num1: str, num2: str) -> int:
+        if order_map.get(num1) is not None and num2 in order_map.get(num1):
+            return 1
+        elif order_map.get(num2) is not None and num1 in order_map.get(num2):
+            return -1
+        return 0
+
+    with open("day5.txt", 'r') as f:
         lines = f.read().splitlines()
 
         empty_string_index = lines.index("")
@@ -31,7 +30,9 @@ def main():
         for update in updates:
             pages = update.split(',')
 
-            if is_update_valid(pages, order_map):
+            sorted_pages = sorted(pages, key=cmp_to_key(get_first))
+
+            if sorted_pages == pages:
                 valid_updates.append(pages)
 
         count = 0
